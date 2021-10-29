@@ -35,6 +35,10 @@ body {
   padding: 6rem 0;
 }
 
+.products {
+  padding-top: 3rem;
+}
+
 header {
   background-color: #5e4b43;
   background-color: #c3ae9f;
@@ -43,70 +47,100 @@ header {
   box-shadow: rgba(217, 206, 199, 0.15) 0px 2px 8px 0px;
 }
 
-nav {
-  width: 95%;
+.navbar {
+  width: 85%;
+  flex-direction: column;
   margin: 0 auto;
+  padding: 0.6rem 0;
 }
 
-.navbar-brand {
+.nav-left-container {
   display: flex;
+}
+
+.brand-logo {
+  width: 250px;
+  padding: 0.15rem 0 1rem 0;
+}
+
+.links-container {
   align-items: center;
-  line-height: normal;
-  border-radius: 3px;
-}
-
-#brand-home {
-  font-family: "futura pt";
-  font-size: 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--primary);
-  margin: 0;
-  padding: 0 0.25rem 0 1rem;
-}
-
-#brand-decor {
-  font-family: "futura pt";
-  font-size: 2rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: var(--text);
-  padding-right: 1rem;
-}
-
-.dot {
-  background-color: var(--text);
-  height: 5px;
-  width: 5px;
-  border-radius: 50%;
+  display: none;
 }
 
 .nav-link {
-  font-size: 1.125rem;
-  color: #383535 !important;
-  margin-right: 1rem;
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-right: 1.5rem;
   padding: 0;
-  border-bottom: 2px solid transparent;
-  transition: border 0.3s ease-in-out;
+  position: relative;
+}
+
+.active-link {
+  font-weight: bold;
+}
+
+.active-link::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--primary);
+}
+
+.nav-link::after {
+  content: "";
+  width: 0;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  transition: width 0.2s ease-in-out;
+  background: transparent;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  background: var(--primary);
 }
 
 .nav-link:hover {
-  border-bottom: 2px solid var(--primary);
-}
-
-.fa-bars {
   color: var(--primary);
-  font-size: 1.5rem;
 }
 
-.navbar-toggler,
-.navbar-toggler-icon {
+.icons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-icon {
+  width: 3rem;
+  transition: scale 0.3s ease-in-out;
+}
+
+.nav-icon:hover {
+  scale: 1.1;
+}
+
+.dropdown-menu {
+  display: none;
+  background-color: var(--navbar);
   border: none;
-  outline: none;
+  border-radius: 0;
+  width: 100%;
+  padding-bottom: 1rem;
 }
 
-.navbar-toggler:focus {
-  outline: none;
+.dropdown-links-container {
+  padding-left: 7.5%;
+}
+
+.dropdown-links-container a:hover {
+  border-bottom: 2px solid transparent;
 }
 
 .main-wrapper {
@@ -124,12 +158,23 @@ nav {
   padding-bottom: 2rem;
 }
 
+.main-prod-image {
+  background-image: url("../images/home-decor-2-large.jpg");
+  background-size: cover;
+  height: 600px;
+  margin-bottom: 3rem;
+}
+
 h1 {
   font-family: var(--headings);
   font-size: 2.5rem;
   color: var(--primary);
   text-align: center;
   padding: 3rem 1rem 1rem 1rem;
+}
+
+h1.products {
+  padding-top: 0;
 }
 
 h2 {
@@ -156,7 +201,7 @@ h2 {
 }
 
 .card {
-  width: 350px;
+  max-width: 350px;
   border: none;
   border-radius: 5px;
   padding-bottom: 1rem;
@@ -197,7 +242,17 @@ h3 {
 
 .card-text {
   color: var(--text);
-  padding-bottom: 1rem;
+}
+
+.category {
+  font-weight: bold;
+}
+
+.price {
+  font-family: var(--headings);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
 }
 
 footer {
@@ -233,6 +288,24 @@ footer {
     flex-direction: row;
   }
 
+  .navbar {
+    flex-direction: row;
+  }
+
+  .brand-logo {
+    margin-right: 3rem;
+    padding: 0.15rem 0;
+  }
+
+  .icons-container {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .nav-icon {
+    margin-left: 1.5rem;
+  }
+
   .content-container {
     flex: 1;
     border-radius: 5px 0 0 5px;
@@ -242,6 +315,20 @@ footer {
     height: auto;
     flex: 1;
     border-radius: 0 5px 5px 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .links-container {
+    display: flex;
+  }
+
+  #hamburger {
+    display: none;
+  }
+
+  .dropdown-menu {
+    display: none;
   }
 }
 
@@ -309,4 +396,8 @@ footer {
   .main-image {
     flex: 1;
   }
+}
+
+.carousel-indicators {
+  bottom: -10px;
 }
